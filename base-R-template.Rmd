@@ -31,6 +31,19 @@ Tail_Species
 
 ```{r}
 
+width <- iris$Sepal.Width
+length <- iris$Sepal.Length
+
+
+for (i in width) {
+  for (j in length) {
+      if (width[i] > 1) {
+        mean_length <- mean(length[j])
+    }
+  }
+}
+
+mean_length
 
 
 ```
@@ -84,20 +97,36 @@ Hint: First identify the pattern(s) in the table before you create the for loop.
 
 ```{r}
 
+df <- data.frame(NULL)  # we need a placeholder, and it should be a data.frame 
+Rows <- c(1:3)
+Cols <- c(1:4)
+
+for (j in 1:length(Cols)) {           # outer loop processed after each complete cycle of inner loop
+  for (i in 1:length(Rows)) {         # inner loop processed most frequently
+    df[i, j] <- i + j -1
+  }
+}
+
+df
+
 ```
 
 ### Question 5: user defined functions
 
-#### 5A) Complete the following user define function to generate `n` random normal numbers with a given mean and standard deviation and plot a histogram of it. Do not change  the seed number in set.seed. You can use the function `hist` to plot the histogram.  
+#### 5A) Complete the following user define function to generate `n` random normal numbers with a given mean and standard deviation and plot a histogram of it. Do not change the seed number in set.seed. You can use the function `hist` to plot the histogram.  
 
 ##### 5B) Then call the function to generate 1000 random normal numbers with mean 0 and standard deviation 1 and plot a histogram of it.
 
 ```{r}
+
 set.seed(184)
-plotNormal <- function(repitions, mean, sd){
-  
+plotNormal <- function(repetitions, mean, sd){
+
+  numbers <- rnorm(repetitions, mean, sd)
+  hist(numbers, main = "Random Numbers", xlab = "Value", ylab = "Frequency")
 }
 
+plotNormal(1000, 0, 1)
 
 ```
 
